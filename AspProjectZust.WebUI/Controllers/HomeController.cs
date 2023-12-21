@@ -19,7 +19,6 @@ namespace AspProjectZust.WebUI.Controllers
             return View();
         }
 
-
         public IActionResult Friends()
         {
             return View();
