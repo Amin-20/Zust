@@ -1,4 +1,9 @@
-﻿<!doctype html>
+﻿@model LoginViewModel
+@{
+    Layout = null;
+}
+
+<!doctype html>
 <html lang="zxx">
 <head>
     <!-- Required meta tags -->
@@ -46,7 +51,7 @@
                     <div class="profile-authentication-image">
                         <div class="content-image">
                             <div class="logo">
-                                <a href="index.html"><img src="~/assets/images/logo.png" alt="Zust"></a>
+                                <img src="~/assets/images/logo.png" alt="Zust">
                             </div>
                             <div class="vector-image">
                                 <img src="~/assets/images/vector.png" alt="image">
@@ -58,40 +63,43 @@
                 <div class="col-lg-6 col-md-12">
                     <div class="login-form">
                         <h2>Login</h2>
-
-                        <form>
+                        <form asp-controller="Account" asp-action="Login" method="post"
+                              role="form" class="form-horizontal">
                             <div class="form-group">
-                                <label>Username or email</label>
-                                <input type="text" class="form-control">
+                                <label>Username</label>
+                                <input asp-for="Username" class="form-control" />
+                                <span asp-validation-for="Username"></span>
                             </div>
-
                             <div class="form-group">
                                 <label>Password</label>
-                                <input type="password" class="form-control">
+                                <input asp-for="Password" class="form-control" />
+                                <span asp-validation-for="Password"></span>
                             </div>
+                            <div class="form-group">
+                                <div class="remember-me-wrap d-flex justify-content-between align-items-center">
+                                    <p>
+                                        <input type="checkbox" id="test1">
+                                        <label for="test1">Remember me</label>
+                                    </p>
 
-                            <div class="remember-me-wrap d-flex justify-content-between align-items-center">
-                                <p>
-                                    <input type="checkbox" id="test1">
-                                    <label for="test1">Remember me</label>
-                                </p>
-
-                                <div class="lost-your-password-wrap">
-                                    <a href="forgot-password.html" class="lost-your-password">Forgot password ?</a>
+                                    <div class="lost-your-password-wrap">
+                                        <a href="forgot-password.html" class="lost-your-password">Forgot password ?</a>
+                                    </div>
                                 </div>
                             </div>
-                            <button type="submit" class="default-btn">Login</button>
-                            <div class="or-text"><span>Or</span></div>
-                            <button type="submit" class="google-btn">Log In with Google</button>
+                            <div style="margin-top:10px" class="form-group">
+                                <button type="submit" class="default-btn">Login</button>
+                            </div>
+                            <div class="form-group">
+                                <a href="/Account/Register" class="lost-your-password mt-5">Don't have an account? Register Now!</a>
+                            </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="home-btn-icon">
-            <a asp-action="NewsFeed" asp-controller="Home"><i class="flaticon-home"></i></a>
-        </div>
+
     </div>
     <!-- End Preloader Area -->
     <!-- Links of JS files -->
