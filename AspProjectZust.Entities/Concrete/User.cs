@@ -5,7 +5,7 @@ namespace AspProjectZust.WebUI.Entities
     public class User
     {
         public int Id { get; set; }
-        public string? Fisrtname { get; set;        }
+        public string? Fisrtname { get; set;}
         public string? Lastname { get; set; }
         public string? ImageUrl { get; set; } = "person.jpg";
         public string? Username { get; set; }
