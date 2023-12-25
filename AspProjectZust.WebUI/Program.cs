@@ -1,6 +1,6 @@
-using AspProjectZust.WebUI.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Zust.Entities.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
 

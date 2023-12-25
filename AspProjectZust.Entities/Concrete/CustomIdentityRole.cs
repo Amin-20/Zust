@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 
-namespace AspProjectZust.WebUI.Entities
+namespace Zust.Entities.Concrete
 {
     public class CustomIdentityRole : IdentityRole
     {

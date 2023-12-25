@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 
-namespace AspProjectZust.WebUI.Entities
+namespace Zust.Entities.Concrete
 {
     public class CustomIdentityDbContext : IdentityDbContext<CustomIdentityUser, CustomIdentityRole, string>
     {
@@ -12,5 +12,11 @@ namespace AspProjectZust.WebUI.Entities
 
         }
 
+        public DbSet<Post> Posts { get; set; }
+        public DbSet<Friend> Friends { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
+
 }

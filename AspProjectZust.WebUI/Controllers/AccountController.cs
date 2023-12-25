@@ -1,4 +1,4 @@
-﻿using AspProjectZust.WebUI.Entities;
+﻿using Zust.Entities.Concrete;
 using AspProjectZust.WebUI.Helpers;
 using AspProjectZust.WebUI.Models;
 using Microsoft.AspNetCore.Identity;
@@ -87,7 +87,7 @@ namespace AspProjectZust.WebUI.Controllers
                     var user = _context.Users.SingleOrDefault(u => u.UserName == model.Username);
                     if (user != null)
                     {
-                        //user.ConnectTime = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
+                        user.ConnectTime = DateTime.Now.ToLongDateString() + " " + DateTime.Now.ToLongTimeString();
                         user.IsOnline = true;
                         _context.Users.Update(user);
                         await _context.SaveChangesAsync();

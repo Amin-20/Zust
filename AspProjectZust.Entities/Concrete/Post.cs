@@ -1,6 +1,7 @@
-﻿using AspProjectZust.WebUI.Entities;
+﻿using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,13 +11,13 @@ namespace Zust.Entities.Concrete
     public class Post
     {
         public int Id { get; set; }
-        public int userId { get; set; }
-        public CustomIdentityUser user { get; set; }
-        public List<IFormFile> images { get; set; }
-        public List<IFormFile> videos { get; set; }
-        public List<Friend> taggedFriends { get; set; }
-        public string content { get; set; }
+        public int CustomIdentityUserId { get; set; }
+        public string? Images { get; set; }
+        public string? Videos { get; set; }
+        public string? Content { get; set; }
+        public CustomIdentityUser? User { get; set; }
         public DateTime PublishTime { get; set; }
-        public virtual ICollection<Comment> Comments { get; set; }
+        public List<Friend>? TaggedFriends { get; set; }
+        public virtual ICollection<Comment>? Comments { get; set; }
     }
 }
