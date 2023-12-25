@@ -20,4 +20,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AspProjectZust.Core\Zust.Core.csproj" />
+    <ProjectReference Include="..\AspProjectZust.Entities\Zust.Entities.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zust.Core.Abstraction;
 
-namespace Zust.Entities.Concrete
+namespace Zust.Entities.Models
 {
-    public class Chat
+    public class Chat : IEntity
     {
         public int Id { get; set; }
         public string? ReceiverId { get; set; }

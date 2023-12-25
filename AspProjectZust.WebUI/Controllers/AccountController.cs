@@ -1,4 +1,4 @@
-﻿using Zust.Entities.Concrete;
+﻿using Zust.Entities.Models;
 using AspProjectZust.WebUI.Helpers;
 using AspProjectZust.WebUI.Models;
 using Microsoft.AspNetCore.Identity;

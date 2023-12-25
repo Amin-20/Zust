@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Zust.Entities.Concrete
+namespace Zust.Entities.Models
 {
     public class Message
     {
