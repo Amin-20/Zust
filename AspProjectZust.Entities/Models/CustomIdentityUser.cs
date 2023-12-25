@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Zust.Core.Abstraction;
 
 namespace Zust.Entities.Models
 {
-    public class CustomIdentityUser : IdentityUser
+    public class CustomIdentityUser : IdentityUser, IEntity
     {
         public string? Fisrtname { get; set; }
         public string? Lastname { get; set; }
@@ -23,9 +24,21 @@ namespace Zust.Entities.Models
         public string? Address { get; set; }
         public string? Country { get; set; }
         public string? City { get; set; }
-        
-        public virtual ICollection<Friend>? Friends { get; set; }
+
+        public virtual ICollection<Friendship>? Friendships { get; set; }
         public virtual ICollection<Post>? Posts { get; set; }
-        
+        public virtual ICollection<FriendRequest>? FriendRequests { get; set; }
+        public virtual ICollection<Chat>? Chats { get; set; }
+
+        public CustomIdentityUser()
+        {
+            Friendships = new List<Friendship>();
+            FriendRequests = new List<FriendRequest>();
+            Chats = new List<Chat>();
+            Posts = new List<Post>();
+        }
+
+
+
     }
 }

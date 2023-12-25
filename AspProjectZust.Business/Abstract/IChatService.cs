@@ -8,5 +8,6 @@ namespace Zust.Business.Abstract
 {
     internal interface IChatService
     {
+
     }
 }

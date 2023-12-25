@@ -1,9 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
+using Zust.Entities.Models;
 
 namespace AspProjectZust.WebUI.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly UserManager<CustomIdentityUser> _usermanager;
+
+        public HomeController(UserManager<CustomIdentityUser> usermanager)
+        {
+            _usermanager = usermanager;
+        }
+
         public IActionResult Birthday()
         {
             return View();
@@ -55,8 +64,10 @@ namespace AspProjectZust.WebUI.Controllers
             return View();
         }
 
-        public IActionResult NewsFeed()
+        public async Task<IActionResult> NewsFeed()
         {
+            var user = await _usermanager.GetUserAsync(HttpContext.User);
+            ViewBag.User = user;
             return View();
         }
 

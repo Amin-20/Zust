@@ -7,13 +7,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Zust.Entities.Models;
 
-
 #nullable disable
 
 namespace Zust.Entities.Migrations
 {
     [DbContext(typeof(CustomIdentityDbContext))]
-    [Migration("20231225065238_Init")]
+    [Migration("20231225130106_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -131,7 +130,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Chat", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Chat", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -152,7 +151,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("Chats");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Comment", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Comment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -184,7 +183,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.CustomIdentityRole", b =>
+            modelBuilder.Entity("Zust.Entities.Models.CustomIdentityRole", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -211,7 +210,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("AspNetRoles", (string)null);
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.CustomIdentityUser", b =>
+            modelBuilder.Entity("Zust.Entities.Models.CustomIdentityUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -333,7 +332,34 @@ namespace Zust.Entities.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Friend", b =>
+            modelBuilder.Entity("Zust.Entities.Models.FriendRequest", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ReceiverId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("RequestDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SenderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("FriendRequests");
+                });
+
+            modelBuilder.Entity("Zust.Entities.Models.Friendship", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -359,7 +385,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("Friends");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Message", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Message", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -395,7 +421,7 @@ namespace Zust.Entities.Migrations
                     b.ToTable("Messages");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Post", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -430,7 +456,7 @@ namespace Zust.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityRole", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -439,7 +465,7 @@ namespace Zust.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -448,7 +474,7 @@ namespace Zust.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -457,13 +483,13 @@ namespace Zust.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityRole", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityRole", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -472,29 +498,29 @@ namespace Zust.Entities.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Chat", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Chat", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", "Receiver")
-                        .WithMany()
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", "Receiver")
+                        .WithMany("Chats")
                         .HasForeignKey("ReceiverId");
 
                     b.Navigation("Receiver");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Comment", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Comment", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.Post", "Post")
+                    b.HasOne("Zust.Entities.Models.Post", "Post")
                         .WithMany("Comments")
                         .HasForeignKey("PostId");
 
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", "User")
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId");
 
@@ -503,22 +529,31 @@ namespace Zust.Entities.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Friend", b =>
+            modelBuilder.Entity("Zust.Entities.Models.FriendRequest", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.Post", null)
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", "Sender")
+                        .WithMany("FriendRequests")
+                        .HasForeignKey("SenderId");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("Zust.Entities.Models.Friendship", b =>
+                {
+                    b.HasOne("Zust.Entities.Models.Post", null)
                         .WithMany("TaggedFriends")
                         .HasForeignKey("PostId");
 
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", "YourFriend")
-                        .WithMany("Friends")
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", "YourFriend")
+                        .WithMany("Friendships")
                         .HasForeignKey("YourFriendId");
 
                     b.Navigation("YourFriend");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Message", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Message", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.Chat", "Chat")
+                    b.HasOne("Zust.Entities.Models.Chat", "Chat")
                         .WithMany("Messages")
                         .HasForeignKey("ChatId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -527,28 +562,32 @@ namespace Zust.Entities.Migrations
                     b.Navigation("Chat");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Post", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Post", b =>
                 {
-                    b.HasOne("Zust.Entities.Concrete.CustomIdentityUser", "User")
+                    b.HasOne("Zust.Entities.Models.CustomIdentityUser", "User")
                         .WithMany("Posts")
                         .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Chat", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Chat", b =>
                 {
                     b.Navigation("Messages");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.CustomIdentityUser", b =>
+            modelBuilder.Entity("Zust.Entities.Models.CustomIdentityUser", b =>
                 {
-                    b.Navigation("Friends");
+                    b.Navigation("Chats");
+
+                    b.Navigation("FriendRequests");
+
+                    b.Navigation("Friendships");
 
                     b.Navigation("Posts");
                 });
 
-            modelBuilder.Entity("Zust.Entities.Concrete.Post", b =>
+            modelBuilder.Entity("Zust.Entities.Models.Post", b =>
                 {
                     b.Navigation("Comments");
 

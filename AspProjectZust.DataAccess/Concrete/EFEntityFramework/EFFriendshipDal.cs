@@ -9,7 +9,7 @@ using Zust.Entities.Models;
 
 namespace Zust.DataAccess.Concrete.EFEntityFramework
 {
-    public class EFPostDal : EFEntityFrameworkRepositoryBase<Post, CustomIdentityDbContext>, IPostDal
+    public class EFFriendshipDal : EFEntityFrameworkRepositoryBase<Friendship, CustomIdentityDbContext>, IFriendshipDal
     {
     }
 }

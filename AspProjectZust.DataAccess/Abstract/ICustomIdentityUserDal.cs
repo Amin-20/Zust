@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zust.Core.DataAccess;
+using Zust.Entities.Models;
 
 namespace Zust.DataAccess.Abstract
 {
-    internal interface ICustomIdentityUserDal
+    public interface ICustomIdentityUserDal : IEntityRepository<CustomIdentityUser>
     {
+
     }
 }

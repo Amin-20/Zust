@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Zust.Core.Abstraction;
 
 namespace Zust.Entities.Models
 {
-    public class Comment
+    public class Comment : IEntity
     {
         public int Id { get; set; }
         public int LikeCount { get; set; }
